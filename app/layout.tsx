@@ -1,4 +1,4 @@
-import './globals.css'
+import '../styles/globals.css'
 
 export default function RootLayout({
   children,
@@ -12,7 +12,16 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      {/* all pages are injected into the children property below for layouit  */}
+      <body>
+        <div>
+          {/* Sidebar */}
+
+          {/* Client Provider - Notification */}
+
+          <div className='bg-[#343541] flex-1'>{children}</div>
+        </div>
+      </body>
     </html>
   )
 }
