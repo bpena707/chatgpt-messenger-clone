@@ -1,3 +1,4 @@
+import SideBar from '@/components/SideBar'
 import '../styles/globals.css'
 
 export default function RootLayout({
@@ -14,8 +15,13 @@ export default function RootLayout({
       <head />
       {/* all pages are injected into the children property below for layouit  */}
       <body>
-        <div>
-          {/* Sidebar */}
+        <div className='flex'>
+          <div className='bg-[#202123] max-w-xs h-screen 
+          overflow-y-auto md:min-w-[20rem]'>
+            {/* Sidebar */}
+            <SideBar />
+          </div>
+          
 
           {/* Client Provider - Notification */}
 
