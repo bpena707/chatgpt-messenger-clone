@@ -1,11 +1,20 @@
+import Login from '@/components/Login';
+import { SessionProvider } from '@/components/SessionProvider'
 import SideBar from '@/components/SideBar'
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { Session } from 'inspector'
+import { getServerSession } from "next-auth";
 import '../styles/globals.css'
 
-export default function RootLayout({
+
+// server components are allowed to be async functions
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions)
+
   return (
     <html lang="en">
       {/*
@@ -15,7 +24,14 @@ export default function RootLayout({
       <head />
       {/* all pages are injected into the children property below for layouit  */}
       <body>
-        <div className='flex'>
+        {/* all children have ability to share session state */}
+        <SessionProvider session={session}>
+          {/* ternary operator to display login if session in on or not */}
+          {!session ? (
+            <Login />
+
+          ):(
+            <div className='flex'>
           <div className='bg-[#202123] max-w-xs h-screen 
           overflow-y-auto md:min-w-[20rem]'>
             {/* Sidebar */}
@@ -27,6 +43,9 @@ export default function RootLayout({
 
           <div className='bg-[#343541] flex-1'>{children}</div>
         </div>
+          )  }
+          
+        </SessionProvider>
       </body>
     </html>
   )
