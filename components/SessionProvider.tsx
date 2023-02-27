@@ -1,4 +1,5 @@
 'use client'
+// components are also server components by default hence the use client 
 
 import { Session } from "next-auth";
 import { SessionProvider as Provider } from "next-auth/react";
@@ -12,5 +13,6 @@ type Props = {
 
 
 export function SessionProvider({ children, session }: Props){
+    // wrapping the children in the session functionality 
     return <Provider>{children}</Provider>
 }

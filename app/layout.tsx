@@ -1,8 +1,7 @@
-import Login from '@/components/Login';
-import { SessionProvider } from '@/components/SessionProvider'
-import SideBar from '@/components/SideBar'
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { Session } from 'inspector'
+import Login from '../components/Login';
+import { SessionProvider } from '../components/SessionProvider'
+import SideBar from '../components/SideBar'
+import { authOptions } from '../pages/api/auth/[...nextauth]';
 import { getServerSession } from "next-auth";
 import '../styles/globals.css'
 
@@ -14,7 +13,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession(authOptions)
-
+  console.log(session)
   return (
     <html lang="en">
       {/*
