@@ -5,6 +5,7 @@ import NewChat from "./NewChat"
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../firebase";
+import ChatRow  from "./ChatRow";
 
 function SideBar() {
   const { data: session } = useSession();
