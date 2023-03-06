@@ -1,4 +1,8 @@
-function Chat() {
+type Props = {
+    chatId: string
+}
+
+function Chat({ chatId }: Props) {
   return (
     <div>Chat</div>
   )
