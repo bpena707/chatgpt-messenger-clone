@@ -15,6 +15,9 @@ function ChatInput({ chatId }: Props) {
     const [prompt, setPrompt]= useState("")
     const { data: session } = useSession()
 
+    // TODO: use SWR to get model
+    const model = "davinci"
+
     const sendMessage =async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // defensive programming 
@@ -39,9 +42,21 @@ function ChatInput({ chatId }: Props) {
         await addDoc(
             collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'), message)
 
-            // toast notification
-
+        // TODO: toast notification to say loading 
             
+        
+        //toast notification 
+        await fetch(`/api/askQuestion`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: input, chatId, model, session
+            })
+        }).then(() => {
+            //TODO: toast notification to say successful 
+        })
     }
 
   return (
