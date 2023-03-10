@@ -4,6 +4,7 @@ import SideBar from '../components/SideBar'
 import { authOptions } from '../pages/api/auth/[...nextauth]';
 import { getServerSession } from "next-auth";
 import '../styles/globals.css'
+import ClientProvider from '../components/ClientProvider';
 
 
 // server components are allowed to be async functions
@@ -38,7 +39,8 @@ export default async function RootLayout({
           </div>
           
 
-          {/* Client Provider - Notification */}
+          {/* Client Provider - Toast Notification  injected here*/}
+          <ClientProvider />
 
           <div className='bg-[#343541] flex-1'>{children}</div>
         </div>
