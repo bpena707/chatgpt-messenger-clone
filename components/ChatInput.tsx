@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { useSession } from "next-auth/react"
 
 import { FormEvent, useState } from "react"
+import { toast } from "react-hot-toast"
 
 type Props = {
     chatId: string
@@ -43,6 +44,7 @@ function ChatInput({ chatId }: Props) {
             collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'), message)
 
         // TODO: toast notification to say loading 
+        const notification = toast.loading("ChatGPT is thinking...")
             
         
         //toast notification 
@@ -56,6 +58,9 @@ function ChatInput({ chatId }: Props) {
             })
         }).then(() => {
             //TODO: toast notification to say successful 
+            toast.success("ChatGPT has responded!", {
+                id: notification,
+            })
         })
     }
 
