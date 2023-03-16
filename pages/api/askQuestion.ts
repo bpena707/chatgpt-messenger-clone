@@ -14,7 +14,7 @@ export default async function handler(
 ) {
 
     // destructiing what we send to the ChatInput as the request body basically stripping out all the values from the chatinput file 
-    const{ prompt,chatId, model,session } =req.body
+    const { prompt, chatId, model, session } =req.body
 
     // fail safes if prompt and id are not passed to check and make sure all details are gathered
     if(!prompt) {

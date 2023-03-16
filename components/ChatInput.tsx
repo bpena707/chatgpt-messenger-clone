@@ -1,6 +1,6 @@
 'use client'
 
-import { db } from "@/firebase"
+import { db } from "../firebase"
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { useSession } from "next-auth/react"
@@ -54,7 +54,10 @@ function ChatInput({ chatId }: Props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: input, chatId, model, session
+                prompt: input, 
+                chatId, 
+                model, 
+                session,
             })
         }).then(() => {
             //TODO: toast notification to say successful 
