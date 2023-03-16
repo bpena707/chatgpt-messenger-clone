@@ -39,7 +39,7 @@ function ChatInput({ chatId }: Props) {
             }
         }
         
-        // adds message into the database
+        // adds message into the database client 
         await addDoc(
             collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'), message)
 
@@ -47,7 +47,7 @@ function ChatInput({ chatId }: Props) {
         const notification = toast.loading("ChatGPT is thinking...")
             
         
-        //toast notification 
+        //toast notification where the client queries the api which hits the api/askQuestion file 
         await fetch(`/api/askQuestion`, {
             method: 'POST',
             headers: {
