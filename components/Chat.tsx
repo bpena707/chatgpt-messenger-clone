@@ -19,7 +19,7 @@ function Chat({ chatId }: Props) {
         orderBy("createdAt", "asc")
     ))
   return (
-    // mapping the data from the database and ijecting into the component for output
+    // mapping the data from the database and injecting into the component for output
     <div className="flex-1">
         
         {messages?.docs.map((message)=> (
