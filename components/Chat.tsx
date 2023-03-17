@@ -4,6 +4,7 @@ import { db } from "../firebase"
 import { collection, orderBy, query } from "firebase/firestore"
 import { useSession } from "next-auth/react"
 import { useCollection } from "react-firebase-hooks/firestore"
+import Message from "./Message"
 
 type Props = {
     chatId: string
@@ -18,8 +19,14 @@ function Chat({ chatId }: Props) {
         orderBy("createdAt", "asc")
     ))
   return (
+    // mapping the data from the database and ijecting into the component for output
+    <div className="flex-1">
+        
+        {messages?.docs.map((message)=> (
+            <Message key={message.id} message={message.data()}/>
+        ))}
 
-    <div className="flex-1">Chat</div>
+    </div>
   )
 }
 
