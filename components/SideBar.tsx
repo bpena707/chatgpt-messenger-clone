@@ -18,7 +18,7 @@ function SideBar() {
     'chats'), orderBy("createdAt", "asc"))
   )
 
-  console.log(chats)
+ 
   return (
     <div className="p-2 flex flex-col h-screen">
         <div className="flex-1">
@@ -26,15 +26,22 @@ function SideBar() {
                 {/* NewChat */}
                 <NewChat />
 
-                <div className="hidden sm-inline">
+                <div className="sm:hidden">
                   <ModelSelection  />
                 </div>
 
-                    {/* Map through the ChatRows through every chat*/}
+                <div className="flex flex-col space-y-2 my-2">
+                  {/* loading text for when the chats are being loaded to the screen */}
+                  {loading && (
+                    <div className="animate-pulse text-center text-white">
+                      <p>Loading Chats...</p>
+                    </div>
+                  )}
+                  {/* Map through the ChatRows through every chat*/}
                     {chats?.docs.map(chat => (
                       <ChatRow key={chat.id} id={chat.id} />
                     ))}
-
+                </div> 
             </div>
         </div>
 
