@@ -13,7 +13,7 @@ type Props = {
 function Chat({ chatId }: Props) {
     const {data: session} = useSession()
 
-    // mapping for the collection if the session and query exist before mapping to database
+    // mapping from the collection.Check if the session and query exist before mapping to database
     const [messages] = useCollection(session && query(
         collection(db, "users", session?.user?.email!, "chats", chatId, "messages"),
         orderBy("createdAt", "asc")
@@ -23,7 +23,7 @@ function Chat({ chatId }: Props) {
     <div className="flex-1">
         
         {messages?.docs.map((message)=> (
-            <Message key={message.id} message={message.data()}/>
+            <Message key={message.id} message={message.data()}/> //message data from firebase that is output 
         ))}
 
     </div>
